@@ -13,10 +13,12 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@prisma/client": "^6.12.0",
+    "@prisma/client": "^6.16.2",
     "@types/node": "^24.5.2",
     "kafkajs": "^2.2.4",
-    "prisma": "^6.12.0",
     "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "prisma": "^6.16.2"
   }
 }

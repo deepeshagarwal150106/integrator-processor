@@ -9,6 +9,9 @@ const BROKER = process.env.BROKER || "localhost:9092";
 const kafka = new Kafka({
   clientId: "outboc-processor",
   brokers: [BROKER],
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 async function main() {
