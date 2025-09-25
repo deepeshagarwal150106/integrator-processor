@@ -5,9 +5,10 @@ const TOPIC_NAME = "zap-events";
 
 const client = new PrismaClient();
 
+const BROKER = process.env.BROKER || "localhost:9092";
 const kafka = new Kafka({
   clientId: "outboc-processor",
-  brokers: ["localhost:9092"], 
+  brokers: [BROKER],
 });
 
 async function main() {
