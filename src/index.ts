@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Kafka } from "kafkajs";
+import fs from "fs";
+import path from "path";
 
 const TOPIC_NAME = "zap-events";
 
@@ -10,7 +12,11 @@ const kafka = new Kafka({
   clientId: "outboc-processor",
   brokers: [BROKER],
   ssl: {
-    rejectUnauthorized: false
+    rejectUnauthorized: true, // Recommended for production
+    // Read the certificate files from your 'certs' folder
+    ca: [fs.readFileSync(path.join(__dirname, 'certs/ca.pem'), 'utf-8')],
+    key: fs.readFileSync(path.join(__dirname, 'certs/service.key'), 'utf-8'),
+    cert: fs.readFileSync(path.join(__dirname, 'certs/service.cert'), 'utf-8')
   }
 });
 
